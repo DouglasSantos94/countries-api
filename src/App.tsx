@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import CountriesList from "./components/Countries/CountriesList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import Countries from "./components/Countries/Countries";
+
+export interface IState {
+  countries: {
+    borders: string[];
+    capital: string;
+    currencies: Record<string, never>[];
+    name: string;
+    population: number;
+    region: string;
+    subregion: string;
+    topLevelDomain: string[];
+  }[];
+}
+
+function App(): JSX.Element {
+  const [countries, setCountries] = useState<IState["countries"]>([]);
+
+  useEffect(() => {
+    axios
+      .get("https://restcountries.eu/rest/v2/all")
+      .then(({ data }) => setCountries(data));
+  });
+
+  return <CountriesList countries={countries} />;
 }
 
 export default App;
