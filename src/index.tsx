@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
+import Base from "./styles/elements/Base";
+import Reset from "./styles/generics/Reset";
 
 ReactDOM.render(
   <React.StrictMode>
+    <Base />
+    <Reset />
     <App />
   </React.StrictMode>,
   document.getElementById("root")
