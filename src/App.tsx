@@ -9,6 +9,7 @@ export interface IState {
     borders: string[];
     capital: string;
     currencies: Array<string>;
+    flag: string;
     name: string;
     population: number;
     region: string;
