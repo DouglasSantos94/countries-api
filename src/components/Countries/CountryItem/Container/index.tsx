@@ -36,7 +36,7 @@ const Container = styled.li`
 
     p {
       font-size: 14px;
-      margin: 3px 0;
+      margin: 4px 0;
 
       span {
         font-weight: 600;

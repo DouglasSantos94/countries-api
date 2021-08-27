@@ -1,9 +1,37 @@
-import React from "react";
-
-import { IState as IProps } from "../../App";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import CountryItem from "./CountryItem";
 
-const CountriesList: React.FC<IProps> = ({ countries }) => {
+interface IProps {
+  countries: {
+    alpha2code: string;
+    borders: string[];
+    capital: string;
+    currencies: Array<string>;
+    flag: string;
+    name: string;
+    nativeName: string;
+    languages: string[];
+    population: number;
+    region: string;
+    subregion: string;
+    topLevelDomain: string[];
+  }[];
+}
+
+const CountriesList: React.FC<IProps> = () => {
+  const [countries, setCountries] = useState<IProps["countries"]>([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;languages;flag;borders"
+      )
+      .then(({ data }) => {
+        setCountries(data);
+      });
+  }, []);
+
   const renderList = (): JSX.Element[] => {
     return countries.map(
       ({ alpha2code, name, population, region, capital, flag }) => (
@@ -18,6 +46,7 @@ const CountriesList: React.FC<IProps> = ({ countries }) => {
       )
     );
   };
+
   return (
     <div>
       <ul
