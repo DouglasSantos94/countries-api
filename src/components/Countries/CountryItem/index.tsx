@@ -1,8 +1,9 @@
 import React from "react";
+import CountryView from "../CountryView";
 import Container from "./Container";
 
 interface IProps {
-  alpha2code: string;
+  alpha3code: string;
   capital: string;
   name: string;
   flag: string;
@@ -11,7 +12,7 @@ interface IProps {
 }
 
 const CountryItem: React.FC<IProps> = ({
-  alpha2code,
+  alpha3code,
   flag,
   name,
   population,
@@ -19,7 +20,7 @@ const CountryItem: React.FC<IProps> = ({
   capital,
 }) => {
   return (
-    <Container key={alpha2code}>
+    <Container key={alpha3code}>
       <img src={flag} alt={`${name} flag`} />
       <div>
         <h1>{name}</h1>

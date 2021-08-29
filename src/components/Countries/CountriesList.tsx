@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CountryItem from "./CountryItem";
 
 interface IProps {
   countries: {
-    alpha2code: string;
+    alpha3code: string;
     borders: string[];
     capital: string;
     currencies: Array<string>;
@@ -25,7 +26,7 @@ const CountriesList: React.FC<IProps> = () => {
   useEffect(() => {
     axios
       .get(
-        "https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;languages;flag;borders"
+        "https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;languages;flag;borders;alpha3code"
       )
       .then(({ data }) => {
         setCountries(data);
@@ -34,16 +35,34 @@ const CountriesList: React.FC<IProps> = () => {
 
   const renderList = (): JSX.Element[] => {
     return countries.map(
-      ({ alpha2code, name, population, region, capital, flag }) => (
-        <CountryItem
-          alpha2code={alpha2code}
-          name={name}
-          population={population}
-          region={region}
-          flag={flag}
-          capital={capital}
-        />
-      )
+      ({
+        alpha3code,
+        nativeName,
+        name,
+        population,
+        region,
+        subregion,
+        capital,
+        topLevelDomain,
+        currencies,
+        languages,
+        flag,
+        borders,
+      }) => {
+        const formattedName = name.includes("(") ? name.split("(")[0] : name;
+        return (
+          <Link to={`/view-country/${name}`}>
+            <CountryItem
+              alpha3code={alpha3code}
+              name={formattedName}
+              population={population}
+              region={region}
+              flag={flag}
+              capital={capital}
+            />
+          </Link>
+        );
+      }
     );
   };
 

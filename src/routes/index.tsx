@@ -8,7 +8,7 @@ import CountriesList from "../components/Countries/CountriesList";
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={CountriesList} />
-    <Route path="/view-country/:id" exact component={CountryView} />
+    <Route path="/view-country/:name" exact component={CountryView} />
   </Switch>
 );
 
