@@ -22,7 +22,9 @@ const CountryView: React.FC<CountryProps> = () => {
   const { pathname } = useLocation();
   const [countryBorders, setCountryBorders] = useState<CountryProps[]>([]);
   const [resolved, setResolved] = useState(false);
-  const countryName = pathname.replace("/view-country/", "");
+  const [countryName, setCountryName] = useState(
+    pathname.replace("/view-country/", "")
+  );
   const [country, setCountry] = useState<CountryProps>({
     alpha3code: "",
     borders: [],
@@ -48,9 +50,6 @@ const CountryView: React.FC<CountryProps> = () => {
   }, [countryName]);
 
   useEffect(() => {
-    setResolved(false);
-    // eslint-disable-next-line no-debugger
-    debugger;
     const bordersS: CountryProps[] = [];
     country.borders.map((b) =>
       axios
@@ -63,11 +62,19 @@ const CountryView: React.FC<CountryProps> = () => {
   }, [resolved]);
 
   const renderBorders = (): JSX.Element[] => {
-    return countryBorders.map((border) => (
-      <Link to={`/view-country/${border.name}`}>
-        <li>{border.name}</li>
-      </Link>
-    ));
+    return countryBorders.map((border) => {
+      return (
+        <Link
+          to={`/view-country/${border.name}`}
+          onClick={() => {
+            setResolved(false);
+            setCountryName(border.name);
+          }}
+        >
+          <li>{border.name}</li>
+        </Link>
+      );
+    });
   };
 
   return (
@@ -108,8 +115,10 @@ const CountryView: React.FC<CountryProps> = () => {
             <p>{/* <span>Languages:</span> {languages[0]} */}</p>
           </div>
           <div className="borders">
-            <span>Border Countries:</span>
-            <ul>{countryBorders ? renderBorders() : "Loading"}</ul>
+            <span>
+              <p>Border Countries:</p>
+              <ul>{countryBorders ? renderBorders() : "Loading"}</ul>
+            </span>
           </div>
         </div>
       </div>

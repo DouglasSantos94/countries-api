@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
   width: 100vw;
   height: 600px;
   box-sizing: border-box;
@@ -9,15 +10,19 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
+  span {
+    font-weight: 600;
+  }
+
   div {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 300px;
+    height: 280px;
     width: 70%;
 
     img {
-      width: 360px;
+      width: 380px;
       height: 300px;
     }
 
@@ -35,8 +40,8 @@ const Container = styled.div`
       }
 
       .info {
-        height: 190px;
-        padding: 25px 0;
+        height: 150px;
+        padding: 15px 0;
         width: 540px;
         box-sizing: border-box;
         display: flex;
@@ -46,14 +51,46 @@ const Container = styled.div`
         flex-wrap: wrap;
 
         p {
-          margin-bottom: 10px;
+          margin-bottom: 7px;
           box-sizing: border-box;
         }
       }
       .borders {
-        height: 50px;
+        height: 110px;
         box-sizing: border-box;
+        display: flex;
         width: 540px;
+
+        span {
+          width: 100%;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          align-items: flex-start;
+          box-sizing: border-box;
+
+          p {
+            width: 25%;
+          }
+
+          ul {
+            display: flex;
+            width: 75%;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+          }
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+          li {
+            font-weight: normal;
+            padding: 5px;
+            margin: 5px 10px;
+            box-shadow: 1px 1px 2px rgba(231, 231, 231, 0.7),
+              -1px -1px 2px rgba(231, 231, 231, 0.7);
+          }
+        }
       }
     }
   }
