@@ -6,17 +6,11 @@ import CountryItem from "./CountryItem";
 interface IProps {
   countries: {
     alpha3code: string;
-    borders: string[];
     capital: string;
-    currencies: Array<string>;
     flag: string;
     name: string;
-    nativeName: string;
-    languages: string[];
     population: number;
     region: string;
-    subregion: string;
-    topLevelDomain: string[];
   }[];
 }
 
@@ -35,32 +29,17 @@ const CountriesList: React.FC<IProps> = () => {
 
   const renderList = (): JSX.Element[] => {
     return countries.map(
-      ({
-        alpha3code,
-        nativeName,
-        name,
-        population,
-        region,
-        subregion,
-        capital,
-        topLevelDomain,
-        currencies,
-        languages,
-        flag,
-        borders,
-      }) => {
+      ({ alpha3code, name, population, region, capital, flag }) => {
         const formattedName = name.includes("(") ? name.split("(")[0] : name;
         return (
-          <Link to={`/view-country/${name}`}>
-            <CountryItem
-              alpha3code={alpha3code}
-              name={formattedName}
-              population={population}
-              region={region}
-              flag={flag}
-              capital={capital}
-            />
-          </Link>
+          <CountryItem
+            alpha3code={alpha3code}
+            name={formattedName}
+            population={population}
+            region={region}
+            flag={flag}
+            capital={capital}
+          />
         );
       }
     );

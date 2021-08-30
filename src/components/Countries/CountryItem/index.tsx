@@ -1,6 +1,6 @@
 import React from "react";
-import CountryView from "../CountryView";
-import Container from "./Container";
+import { StyledLink } from "../../../styles/elements";
+import { Container, InfoField, InfoWrapper } from "./Container";
 
 interface IProps {
   alpha3code: string;
@@ -21,19 +21,21 @@ const CountryItem: React.FC<IProps> = ({
 }) => {
   return (
     <Container key={alpha3code}>
-      <img src={flag} alt={`${name} flag`} />
-      <div>
-        <h1>{name}</h1>
-        <p>
-          <span>Population:</span> {population}
-        </p>
-        <p>
-          <span>Region:</span> {region}
-        </p>
-        <p>
-          <span>Capital:</span> {capital}
-        </p>
-      </div>
+      <StyledLink to={`/view-country/${name}`}>
+        <img src={flag} alt={`${name} flag`} />
+        <InfoWrapper>
+          <h1>{name}</h1>
+          <InfoField>
+            <span>Population:</span> {population}
+          </InfoField>
+          <InfoField>
+            <span>Region:</span> {region}
+          </InfoField>
+          <InfoField>
+            <span>Capital:</span> {capital}
+          </InfoField>
+        </InfoWrapper>
+      </StyledLink>
     </Container>
   );
 };

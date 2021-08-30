@@ -18,31 +18,31 @@ const Container = styled.li`
     height: 140px;
     border-radius: 6px 6px 0 0;
   }
+`;
 
-  div {
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+const InfoWrapper = styled.div`
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    h1 {
-      font-size: 17px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 14px;
-      margin: 4px 0;
-
-      span {
-        font-weight: 600;
-      }
-    }
+  h1 {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 10px;
   }
 `;
 
-export default Container;
+const InfoField = styled.p`
+  font-size: 14px;
+  margin: 4px 0;
+
+  span {
+    font-weight: 600;
+  }
+`;
+
+export { Container, InfoField, InfoWrapper };
