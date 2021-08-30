@@ -79,7 +79,12 @@ const CountryView: React.FC<CountryProps> = () => {
 
   return (
     <Container>
-      <div>
+      <div className="button">
+        <Link to="/">
+          <button type="button">Voltar</button>
+        </Link>
+      </div>
+      <div className="content">
         <img src={country.flag} alt={`${country.name} flag`} />
         <div>
           <h1>{country.name}</h1>

@@ -4,30 +4,47 @@ const Container = styled.div`
   font-family: "Nunito Sans", sans-serif;
   font-size: 14px;
   width: 100vw;
+  flex-direction: column;
   height: 600px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+
+  .button {
+    width: 80%;
+
+    button {
+      width: 100px;
+      font-weight: normal;
+      padding: 5px;
+      margin: 5px 10px;
+      box-shadow: 1px 1px 2px rgba(231, 231, 231, 0.9),
+        -1px -1px 2px rgba(231, 231, 231, 0.9);
+      background-color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
 
   span {
     font-weight: 600;
   }
 
-  div {
+  .content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 280px;
-    width: 70%;
+    height: 300px;
+    width: 80%;
 
     img {
-      width: 380px;
+      width: 400px;
       height: 300px;
     }
 
     div {
-      width: 500px;
+      width: 600px;
 
       h1 {
         box-sizing: border-box;
@@ -37,6 +54,7 @@ const Container = styled.div`
         display: flex;
         align-items: flex-end;
         height: 60px;
+        margin-bottom: 20px;
       }
 
       .info {
