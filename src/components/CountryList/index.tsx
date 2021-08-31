@@ -16,7 +16,7 @@ interface IProps {
 
 const CountryList: React.FC<IProps> = () => {
   const [countries, setCountries] = useState<IProps["countries"]>([]);
-
+  const [regionFilter, setRegionFilter] = useState("");
   useEffect(() => {
     axios
       .get(
@@ -27,14 +27,19 @@ const CountryList: React.FC<IProps> = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://restcountries.eu/rest/v2/region/${regionFilter}`)
+      .then(({ data }) => setCountries(data));
+  }, [regionFilter]);
+
   const renderList = (): JSX.Element[] => {
     return countries.map(
       ({ alpha3code, name, population, region, capital, flag }) => {
-        const formattedName = name.includes("(") ? name.split("(")[0] : name;
         return (
           <CountryItem
             alpha3code={alpha3code}
-            name={formattedName}
+            name={name}
             population={population}
             region={region}
             flag={flag}
@@ -45,8 +50,47 @@ const CountryList: React.FC<IProps> = () => {
     );
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    axios
+      .get(`https://restcountries.eu/rest/v2/name/${name}`)
+      .then(({ data }) => {
+        setCountries(data);
+      });
+  };
+
   return (
     <Container>
+      <nav>
+        <input type="text" onChange={handleChange} />
+        <ul>
+          <li>
+            <button type="button" onClick={() => setRegionFilter("Africa")}>
+              Africa
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => setRegionFilter("Americas")}>
+              Americas
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => setRegionFilter("Asia")}>
+              Asia
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => setRegionFilter("Europe")}>
+              Europe
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => setRegionFilter("Oceania")}>
+              Oceania
+            </button>
+          </li>
+        </ul>
+      </nav>
       <ul>{renderList()}</ul>
     </Container>
   );
