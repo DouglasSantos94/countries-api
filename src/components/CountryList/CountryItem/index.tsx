@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledLink } from "../../../styles/elements";
+import { StyledLink } from "styles/elements";
 import { Container, InfoField, InfoWrapper } from "./Container";
 
 interface IProps {

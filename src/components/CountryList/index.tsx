@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Container from "./Container";
 import CountryItem from "./CountryItem";
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
   }[];
 }
 
-const CountriesList: React.FC<IProps> = () => {
+const CountryList: React.FC<IProps> = () => {
   const [countries, setCountries] = useState<IProps["countries"]>([]);
 
   useEffect(() => {
@@ -46,18 +46,9 @@ const CountriesList: React.FC<IProps> = () => {
   };
 
   return (
-    <div>
-      <ul
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          padding: "30px",
-        }}
-      >
-        {renderList()}
-      </ul>
-    </div>
+    <Container>
+      <ul>{renderList()}</ul>
+    </Container>
   );
 };
-export default CountriesList;
+export default CountryList;
