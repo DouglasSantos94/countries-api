@@ -36,13 +36,4 @@ const InfoWrapper = styled.div`
   }
 `;
 
-const InfoField = styled.p`
-  font-size: 14px;
-  margin: 4px 0;
-
-  span {
-    font-weight: 600;
-  }
-`;
-
-export { Container, InfoField, InfoWrapper };
+export { Container, InfoWrapper };

@@ -1,8 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
-import styled from "styled-components";
-import Container from "./Container";
+import { Link, useLocation } from "react-router-dom";
+import { InfoField } from "styles/elements";
+import {
+  BorderButton,
+  BordersList,
+  BordersWrapper,
+  ButtonWrapper,
+  Container,
+  ContentWrapper,
+  CountryDetails,
+  InfoWrapper,
+} from "./Container";
 
 interface CountryProps {
   alpha3code: string;
@@ -64,69 +73,75 @@ const CountryView: React.FC<CountryProps> = () => {
   const renderBorders = (): JSX.Element[] => {
     return countryBorders.map((border) => {
       return (
-        <Link
-          to={`/view-country/${border.name}`}
-          onClick={() => {
-            setResolved(false);
-            setCountryName(border.name);
-          }}
-        >
-          <li>{border.name}</li>
-        </Link>
+        <BorderButton>
+          <Link
+            to={`/view-country/${border.name}`}
+            onClick={() => {
+              setResolved(false);
+              setCountryName(border.name);
+            }}
+          >
+            {border.name}
+          </Link>
+        </BorderButton>
       );
     });
   };
 
   return (
     <Container>
-      <div className="button">
+      <ButtonWrapper>
         <Link to="/">
           <button type="button">Voltar</button>
         </Link>
-      </div>
-      <div className="content">
+      </ButtonWrapper>
+      <ContentWrapper>
         <img src={country.flag} alt={`${country.name} flag`} />
-        <div>
+        <CountryDetails>
           <h1>{country.name}</h1>
-          <div className="info">
-            <p>
+          <InfoWrapper>
+            <InfoField>
               <span>Native Name:</span> {country.nativeName}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Population:</span> {country.population}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Region:</span> {country.region}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Sub Region:</span> {country.subregion}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Capital:</span> {country.capital}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Top Level Domain:</span> teste
               {/* {topLevelDomain[0]} */}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Currencies:</span> teste
               {/* {topLevelDomain[0]} */}
-            </p>
-            <p>
+            </InfoField>
+            <InfoField>
               <span>Languages:</span> teste
               {/* {topLevelDomain[0]} */}
-            </p>
-            <p>{/* <span>Currencies:</span> {currencies[0]} */}</p>
-            <p>{/* <span>Languages:</span> {languages[0]} */}</p>
-          </div>
-          <div className="borders">
-            <span>
-              <p>Border Countries:</p>
-              <ul>{countryBorders ? renderBorders() : "Loading"}</ul>
-            </span>
-          </div>
-        </div>
-      </div>
+            </InfoField>
+            <InfoField>
+              {/* <span>Currencies:</span> {currencies[0]} */}
+            </InfoField>
+            <InfoField>
+              {/* <span>Languages:</span> {languages[0]} */}
+            </InfoField>
+          </InfoWrapper>
+          <BordersWrapper>
+            <p>Border Countries:</p>
+            <BordersList>
+              {countryBorders ? renderBorders() : "Loading"}
+            </BordersList>
+          </BordersWrapper>
+        </CountryDetails>
+      </ContentWrapper>
     </Container>
   );
 };

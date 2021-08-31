@@ -13,4 +13,13 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
-export { Base, StyledLink };
+const InfoField = styled.p`
+  font-size: 14px;
+  margin: 4px 0;
+
+  span {
+    font-weight: 600;
+  }
+`;
+
+export { Base, InfoField, StyledLink };

@@ -1,6 +1,6 @@
 import React from "react";
-import { StyledLink } from "styles/elements";
-import { Container, InfoField, InfoWrapper } from "./Container";
+import { InfoField, StyledLink } from "styles/elements";
+import { Container, InfoWrapper } from "./Container";
 
 interface IProps {
   alpha3code: string;
