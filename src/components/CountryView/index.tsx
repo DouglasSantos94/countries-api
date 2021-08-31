@@ -27,13 +27,15 @@ interface CountryProps {
   subregion: string;
   topLevelDomain: string[];
 }
+
 const CountryView: React.FC<CountryProps> = () => {
   const { pathname } = useLocation();
-  const [countryBorders, setCountryBorders] = useState<CountryProps[]>([]);
+  const [countryBorders, setCountryBorders] = useState<string[]>([]);
   const [resolved, setResolved] = useState(false);
   const [countryName, setCountryName] = useState(
     pathname.replace("/view-country/", "")
   );
+
   const [country, setCountry] = useState<CountryProps>({
     alpha3code: "",
     borders: [],
@@ -59,15 +61,25 @@ const CountryView: React.FC<CountryProps> = () => {
   }, [countryName]);
 
   useEffect(() => {
-    const bordersS: CountryProps[] = [];
-    country.borders.map((b) =>
-      axios
-        .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
-        .then(({ data }) => {
-          bordersS.push(data);
-          setCountryBorders([...bordersS]);
-        })
-    );
+    if (resolved) {
+      Promise.all(
+        country.borders.map((b) =>
+          axios
+            .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
+            .then(({ data: { name } }) => name)
+        )
+      ).then((name) => setCountryBorders(name));
+    }
+
+    // const bordersS: CountryProps[] = [];
+    // country.borders.map((b) =>
+    //   axios
+    //     .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
+    //     .then(({ data }) => {
+    //       bordersS.push(data);
+    //       setCountryBorders([...bordersS]);
+    //     })
+    // );
   }, [resolved]);
 
   const renderBorders = (): JSX.Element[] => {
@@ -75,13 +87,13 @@ const CountryView: React.FC<CountryProps> = () => {
       return (
         <BorderButton>
           <Link
-            to={`/view-country/${border.name}`}
+            to={`/view-country/${border}`}
             onClick={() => {
               setResolved(false);
-              setCountryName(border.name);
+              setCountryName(border);
             }}
           >
-            {border.name}
+            {border}
           </Link>
         </BorderButton>
       );
