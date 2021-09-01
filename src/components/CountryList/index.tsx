@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Container from "./Container";
+import { Container, NavItem, RegionSelect } from "./Container";
 import CountryItem from "./CountryItem";
 
 interface IProps {
@@ -17,6 +17,7 @@ interface IProps {
 const CountryList: React.FC<IProps> = () => {
   const [countries, setCountries] = useState<IProps["countries"]>([]);
   const [regionFilter, setRegionFilter] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -59,38 +60,25 @@ const CountryList: React.FC<IProps> = () => {
       });
   };
 
+  const handleRegionChange = (e: any) => {
+    const region = e.target.value;
+    axios
+      .get(`https://restcountries.eu/rest/v2/region/${region}`)
+      .then(({ data }) => setCountries(data));
+  };
   return (
     <Container>
-      <nav>
+      <NavItem>
         <input type="text" onChange={handleChange} />
-        <ul>
-          <li>
-            <button type="button" onClick={() => setRegionFilter("Africa")}>
-              Africa
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => setRegionFilter("Americas")}>
-              Americas
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => setRegionFilter("Asia")}>
-              Asia
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => setRegionFilter("Europe")}>
-              Europe
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => setRegionFilter("Oceania")}>
-              Oceania
-            </button>
-          </li>
-        </ul>
-      </nav>
+        <RegionSelect onChange={handleRegionChange}>
+          <option value="All">Filter By Region</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </RegionSelect>
+      </NavItem>
       <ul>{renderList()}</ul>
     </Container>
   );

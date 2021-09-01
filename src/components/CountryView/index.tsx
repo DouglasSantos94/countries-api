@@ -70,16 +70,6 @@ const CountryView: React.FC<CountryProps> = () => {
         )
       ).then((name) => setCountryBorders(name));
     }
-
-    // const bordersS: CountryProps[] = [];
-    // country.borders.map((b) =>
-    //   axios
-    //     .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
-    //     .then(({ data }) => {
-    //       bordersS.push(data);
-    //       setCountryBorders([...bordersS]);
-    //     })
-    // );
   }, [resolved]);
 
   const renderBorders = (): JSX.Element[] => {
