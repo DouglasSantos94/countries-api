@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { InfoField } from "styles/elements";
+import BorderCountries from "./BorderCountries";
 import {
-  BorderButton,
-  BordersList,
-  BordersWrapper,
   ButtonWrapper,
   Container,
   ContentWrapper,
@@ -30,11 +28,8 @@ interface CountryProps {
 
 const CountryView: React.FC<CountryProps> = () => {
   const { pathname } = useLocation();
-  const [countryBorders, setCountryBorders] = useState<string[]>([]);
   const [resolved, setResolved] = useState(false);
-  const [countryName, setCountryName] = useState(
-    pathname.replace("/view-country/", "")
-  );
+  const [countryName, setCountryName] = useState("");
 
   const [country, setCountry] = useState<CountryProps>({
     alpha3code: "",
@@ -52,6 +47,10 @@ const CountryView: React.FC<CountryProps> = () => {
   });
 
   useEffect(() => {
+    setCountryName(pathname.replace("/view-country/", ""));
+  }, [pathname]);
+
+  useEffect(() => {
     axios
       .get(`https://restcountries.eu/rest/v2/name/${countryName}`)
       .then(({ data }) => {
@@ -59,36 +58,6 @@ const CountryView: React.FC<CountryProps> = () => {
         setResolved(true);
       });
   }, [countryName]);
-
-  useEffect(() => {
-    if (resolved) {
-      Promise.all(
-        country.borders.map((b) =>
-          axios
-            .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
-            .then(({ data: { name } }) => name)
-        )
-      ).then((name) => setCountryBorders(name));
-    }
-  }, [resolved]);
-
-  const renderBorders = (): JSX.Element[] => {
-    return countryBorders.map((border) => {
-      return (
-        <BorderButton>
-          <Link
-            to={`/view-country/${border}`}
-            onClick={() => {
-              setResolved(false);
-              setCountryName(border);
-            }}
-          >
-            {border}
-          </Link>
-        </BorderButton>
-      );
-    });
-  };
 
   return (
     <Container>
@@ -136,12 +105,9 @@ const CountryView: React.FC<CountryProps> = () => {
               {/* <span>Languages:</span> {languages[0]} */}
             </InfoField>
           </InfoWrapper>
-          <BordersWrapper>
-            <p>Border Countries:</p>
-            <BordersList>
-              {countryBorders ? renderBorders() : "Loading"}
-            </BordersList>
-          </BordersWrapper>
+          {resolved && (
+            <BorderCountries borderCountries={country.borders} resolved />
+          )}
         </CountryDetails>
       </ContentWrapper>
     </Container>
