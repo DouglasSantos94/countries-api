@@ -34,4 +34,4 @@ const BorderButton = styled.li`
   }
 `;
 
-export { BordersList, BordersWrapper, BorderButton };
+export { BorderButton, BordersList, BordersWrapper };

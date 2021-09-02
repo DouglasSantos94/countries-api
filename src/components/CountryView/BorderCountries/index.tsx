@@ -3,26 +3,24 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BorderButton, BordersList, BordersWrapper } from "./styles";
 
-interface BorderCountriesProps {
-  borderCountries: string[];
+interface BorderProps {
+  borders: string[];
   resolved: boolean;
 }
 
-const BorderCountries: React.FC<BorderCountriesProps> = ({
-  borderCountries,
-  resolved,
-}) => {
+const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
   const [countryBorders, setCountryBorders] = useState<string[]>([]);
-
   useEffect(() => {
-    Promise.all(
-      borderCountries.map((b) => {
-        return axios
-          .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
-          .then(({ data: { name } }) => name);
-      })
-    ).then((name) => setCountryBorders(name));
-  }, [countryBorders]);
+    if (resolved) {
+      Promise.all(
+        borders.map((b) =>
+          axios
+            .get(`https://restcountries.eu/rest/v2/alpha/${b}`)
+            .then(({ data: { name } }) => name)
+        )
+      ).then((name) => setCountryBorders(name));
+    }
+  }, [borders]);
 
   const renderBorders = (): JSX.Element[] => {
     return countryBorders.map((border) => {
@@ -33,11 +31,10 @@ const BorderCountries: React.FC<BorderCountriesProps> = ({
       );
     });
   };
-
   return (
     <BordersWrapper>
       <p>Border Countries:</p>
-      <BordersList>{renderBorders()}</BordersList>
+      <BordersList>{countryBorders ? renderBorders() : "Loading"}</BordersList>
     </BordersWrapper>
   );
 };
