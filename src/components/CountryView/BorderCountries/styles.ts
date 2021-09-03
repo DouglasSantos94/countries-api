@@ -25,8 +25,8 @@ const BorderButton = styled.li`
   font-weight: normal;
   padding: 5px;
   margin: 5px 10px;
-  box-shadow: 1px 1px 2px rgba(231, 231, 231, 0.7),
-    -1px -1px 2px rgba(231, 231, 231, 0.7);
+  box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7),
+    -1px -1px 2px rgba(168, 168, 168, 0.7);
 
   a {
     text-decoration: none;

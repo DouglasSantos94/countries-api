@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from "styled-components";
 const Base = createGlobalStyle`
   body {
     font-family: "Nunito Sans", sans-serif;
+    color: hsl(200, 15%, 8%);
   }
 `;
 

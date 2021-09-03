@@ -2,16 +2,23 @@ import styled from "styled-components";
 
 const ButtonWrapper = styled.div`
   width: 80%;
+  a {
+    text-decoration: none;
+  }
 
   button {
     width: 100px;
     font-weight: normal;
     padding: 5px;
     margin: 5px 10px;
-    box-shadow: 1px 1px 2px rgba(231, 231, 231, 0.9),
-      -1px -1px 2px rgba(231, 231, 231, 0.9);
+    box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7),
+      -1px -1px 2px rgba(168, 168, 168, 0.7);
     background-color: white;
     border: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     cursor: pointer;
   }
 `;

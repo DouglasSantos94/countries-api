@@ -20,7 +20,7 @@ const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
         )
       ).then((name) => setCountryBorders(name));
     }
-  }, [borders]);
+  }, [countryBorders]);
 
   const renderBorders = (): JSX.Element[] => {
     return countryBorders.map((border) => {

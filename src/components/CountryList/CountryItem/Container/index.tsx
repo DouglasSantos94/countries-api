@@ -9,8 +9,8 @@ const Container = styled.li`
   height: 280px;
   margin: 30px;
   border-radius: 6px;
-  box-shadow: 2px 2px 3px rgba(231, 231, 231, 0.5),
-    -2px -2px 3px rgba(231, 231, 231, 0.5);
+  box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7),
+    -1px -1px 2px rgba(168, 168, 168, 0.7);
 
   img {
     width: 100%;

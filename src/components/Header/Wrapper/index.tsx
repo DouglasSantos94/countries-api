@@ -6,7 +6,7 @@ const Wrapper = styled.header`
   align-items: center;
   width: 100%;
   background-color: hsl(0, 0%, 98%);
-  box-shadow: 2px 2px 3px rgba(231, 231, 231, 0.5);
+  box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7);
 `;
 
 export default Wrapper;

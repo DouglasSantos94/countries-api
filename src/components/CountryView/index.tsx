@@ -63,7 +63,10 @@ const CountryView: React.FC<CountryProps> = () => {
     <Container>
       <ButtonWrapper>
         <Link to="/">
-          <button type="button">Voltar</button>
+          <button type="button">
+            <i className="fas fa-arrow-left" />
+            Back
+          </button>
         </Link>
       </ButtonWrapper>
       <ContentWrapper>
