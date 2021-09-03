@@ -2,8 +2,8 @@ import React from "react";
 
 import { Switch, Route } from "react-router-dom";
 
-import CountryView from "components/CountryView";
-import CountryList from "components/CountryList";
+import CountryView from "containers/CountryView";
+import CountryList from "containers/CountryList";
 
 const Routes: React.FC = () => (
   <Switch>

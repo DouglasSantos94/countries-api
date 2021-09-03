@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { InfoField } from "styles/elements";
-import BorderCountries from "./BorderCountries";
+import BorderCountries from "components/BorderCountries";
 import {
   ButtonWrapper,
   Container,
   ContentWrapper,
   CountryDetails,
   InfoWrapper,
-} from "./Container";
+} from "./styles";
 
 interface CountryProps {
   alpha3code: string;

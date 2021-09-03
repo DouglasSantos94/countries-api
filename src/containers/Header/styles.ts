@@ -9,4 +9,11 @@ const Wrapper = styled.header`
   box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7);
 `;
 
-export default Wrapper;
+const Title: React.FC = styled.h1<HTMLHeadingElement>`
+  font-family: "Nunito Sans";
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 30px;
+`;
+
+export { Title, Wrapper };

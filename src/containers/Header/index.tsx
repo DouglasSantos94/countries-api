@@ -1,7 +1,5 @@
 import React from "react";
-
-import Title from "./Title";
-import Wrapper from "./Wrapper";
+import { Title, Wrapper } from "./styles";
 
 const Header: React.FC = () => (
   <Wrapper>

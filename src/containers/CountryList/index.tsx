@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Container, NavItem, RegionSelect } from "./Container";
-import CountryItem from "./CountryItem";
+import CountryItem from "components/CountryItem";
+import { Container, NavItem, RegionSelect } from "./styles";
 
 interface IProps {
   countries: {

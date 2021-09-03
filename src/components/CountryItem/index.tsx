@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoField, StyledLink } from "styles/elements";
-import { Container, InfoWrapper } from "./Container";
+import { Container, InfoWrapper } from "./styles";
 
 interface IProps {
   alpha3code: string;
