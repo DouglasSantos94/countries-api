@@ -110,7 +110,7 @@ const CountryView: React.FC<CountryProps> = () => {
               {/* <span>Languages:</span> {languages[0]} */}
             </InfoField>
           </InfoWrapper>
-          <BorderCountries borders={country.borders} resolved />
+          {resolved && <BorderCountries borders={country.borders} resolved />}
         </CountryDetails>
       </ContentWrapper>
     </Container>
