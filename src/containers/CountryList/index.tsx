@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CountryItem from "components/CountryItem";
+import { getCountries, getCountriesByRegion, getCountry } from "api/countryApi";
 import {
   Container,
   CountrySearch,
@@ -28,21 +28,15 @@ const CountryList: React.FC<IProps> = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;languages;flag;borders;alpha3code"
-      )
-      .then(({ data }) => {
-        setCountries(data);
-        setResolved(true);
-      });
+    getCountries().then(({ data }) => {
+      setCountries(data);
+      setResolved(true);
+    });
   }, []);
 
   useEffect(() => {
     if (resolved)
-      axios
-        .get(`https://restcountries.eu/rest/v2/region/${regionFilter}`)
-        .then(({ data }) => setCountries(data));
+      getCountriesByRegion(regionFilter).then(({ data }) => setCountries(data));
   }, [regionFilter]);
 
   const renderList = (): JSX.Element[] => {
@@ -64,11 +58,9 @@ const CountryList: React.FC<IProps> = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
-    axios
-      .get(`https://restcountries.eu/rest/v2/name/${name}`)
-      .then(({ data }) => {
-        setCountries(data);
-      });
+    getCountry(name).then(({ data }) => {
+      setCountries(data);
+    });
   };
 
   const handleRegionChange = (e: any) => {
@@ -121,7 +113,7 @@ const CountryList: React.FC<IProps> = () => {
           </RegionList>
         </RegionSelect>
       </NavItem>
-      <ul>{renderList()}</ul>
+      <ul>{resolved && renderList()}</ul>
     </Container>
   );
 };

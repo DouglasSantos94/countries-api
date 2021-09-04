@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCountryBorders } from "services/countryService";
+import { getCountryBorders } from "api/countryApi";
 import { StyledLink } from "styles/elements";
 import { BorderButton, BordersList, BordersWrapper } from "./styles";
 

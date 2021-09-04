@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { InfoField, StyledLink } from "styles/elements";
 import BorderCountries from "components/BorderCountries";
+import { getCountry } from "api/countryApi";
 import {
   ButtonWrapper,
   Container,
@@ -53,12 +54,10 @@ const CountryView: React.FC<CountryProps> = () => {
 
   useEffect(() => {
     if (countryName)
-      axios
-        .get(`https://restcountries.eu/rest/v2/name/${countryName}`)
-        .then(({ data }) => {
-          setCountry(data[0]);
-          setResolved(true);
-        });
+      getCountry(countryName).then(({ data }) => {
+        setCountry(data[0]);
+        setResolved(true);
+      });
   }, [countryName]);
 
   return (
