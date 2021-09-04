@@ -52,17 +52,28 @@ const CountryDetails = styled.div`
   }
 `;
 
+const CountryName = styled.h1`
+  box-sizing: border-box;
+  font-size: 25px;
+  font-weight: 800;
+  width: 500px;
+  display: flex;
+  align-items: flex-end;
+  height: 60px;
+  margin-bottom: 20px;
+`;
+
 const ContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   height: 300px;
   width: 80%;
+`;
 
-  img {
-    width: 400px;
-    height: 300px;
-  }
+const CountryFlag = styled.img`
+  width: 400px;
+  height: 300px;
 `;
 
 const Container = styled.div`
@@ -87,4 +98,6 @@ export {
   ContentWrapper,
   CountryDetails,
   InfoWrapper,
+  CountryName,
+  CountryFlag,
 };
