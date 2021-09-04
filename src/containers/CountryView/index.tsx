@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { InfoField } from "styles/elements";
+import { useLocation } from "react-router-dom";
+import { InfoField, StyledLink } from "styles/elements";
 import BorderCountries from "components/BorderCountries";
 import {
   ButtonWrapper,
@@ -46,28 +46,30 @@ const CountryView: React.FC<CountryProps> = () => {
     topLevelDomain: [],
   });
 
-  useEffect(() => {
-    setCountryName(pathname.replace("/view-country/", ""));
-  }, [pathname]);
+  useEffect(
+    () => setCountryName(pathname.replace("/view-country/", "")),
+    [pathname]
+  );
 
   useEffect(() => {
-    axios
-      .get(`https://restcountries.eu/rest/v2/name/${countryName}`)
-      .then(({ data }) => {
-        setCountry(data[0]);
-        setResolved(true);
-      });
+    if (countryName)
+      axios
+        .get(`https://restcountries.eu/rest/v2/name/${countryName}`)
+        .then(({ data }) => {
+          setCountry(data[0]);
+          setResolved(true);
+        });
   }, [countryName]);
 
   return (
     <Container>
       <ButtonWrapper>
-        <Link to="/">
+        <StyledLink to="/">
           <button type="button">
             <i className="fas fa-arrow-left" />
             Back
           </button>
-        </Link>
+        </StyledLink>
       </ButtonWrapper>
       <ContentWrapper>
         <img src={country.flag} alt={`${country.name} flag`} />
@@ -108,7 +110,7 @@ const CountryView: React.FC<CountryProps> = () => {
               {/* <span>Languages:</span> {languages[0]} */}
             </InfoField>
           </InfoWrapper>
-          {resolved && <BorderCountries borders={country.borders} resolved />}
+          <BorderCountries borders={country.borders} resolved />
         </CountryDetails>
       </ContentWrapper>
     </Container>

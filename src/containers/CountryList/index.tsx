@@ -1,7 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CountryItem from "components/CountryItem";
-import { Container, NavItem, RegionSelect } from "./styles";
+import {
+  Container,
+  CountrySearch,
+  NavItem,
+  RegionSelect,
+  RegionList,
+  RegionListItem,
+} from "./styles";
 
 interface IProps {
   countries: {
@@ -17,6 +24,7 @@ interface IProps {
 const CountryList: React.FC<IProps> = () => {
   const [countries, setCountries] = useState<IProps["countries"]>([]);
   const [regionFilter, setRegionFilter] = useState("");
+  const [resolved, setResolved] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -26,13 +34,15 @@ const CountryList: React.FC<IProps> = () => {
       )
       .then(({ data }) => {
         setCountries(data);
+        setResolved(true);
       });
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`https://restcountries.eu/rest/v2/region/${regionFilter}`)
-      .then(({ data }) => setCountries(data));
+    if (resolved)
+      axios
+        .get(`https://restcountries.eu/rest/v2/region/${regionFilter}`)
+        .then(({ data }) => setCountries(data));
   }, [regionFilter]);
 
   const renderList = (): JSX.Element[] => {
@@ -69,47 +79,47 @@ const CountryList: React.FC<IProps> = () => {
   return (
     <Container>
       <NavItem>
-        <div className="search">
+        <CountrySearch>
           <i className="fas fa-search" />
           <input
             type="text"
             onChange={handleChange}
             placeholder="Search for a country..."
           />
-        </div>
-        <div className="menu">
+        </CountrySearch>
+        <RegionSelect>
           <button type="button" onClick={() => setShow(!show)}>
             Filter By Region
             <i className="fas fa-chevron-down" />
           </button>
-          <RegionSelect show={show}>
-            <li>
+          <RegionList show={show}>
+            <RegionListItem show={show}>
               <button type="button" onClick={handleRegionChange}>
                 Africa
               </button>
-            </li>
-            <li>
+            </RegionListItem>
+            <RegionListItem show={show}>
               <button type="button" onClick={handleRegionChange}>
                 Americas
               </button>
-            </li>
-            <li>
+            </RegionListItem>
+            <RegionListItem show={show}>
               <button type="button" onClick={handleRegionChange}>
                 Asia
               </button>
-            </li>
-            <li>
+            </RegionListItem>
+            <RegionListItem show={show}>
               <button type="button" onClick={handleRegionChange}>
                 Europe
               </button>
-            </li>
-            <li>
+            </RegionListItem>
+            <RegionListItem show={show}>
               <button type="button" onClick={handleRegionChange}>
                 Oceania
               </button>
-            </li>
-          </RegionSelect>
-        </div>
+            </RegionListItem>
+          </RegionList>
+        </RegionSelect>
       </NavItem>
       <ul>{renderList()}</ul>
     </Container>

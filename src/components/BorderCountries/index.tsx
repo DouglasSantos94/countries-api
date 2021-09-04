@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { StyledLink } from "styles/elements";
 import { BorderButton, BordersList, BordersWrapper } from "./styles";
 
 interface BorderProps {
@@ -26,7 +26,7 @@ const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
     return countryBorders.map((border) => {
       return (
         <BorderButton>
-          <Link to={`/view-country/${border}`}>{border}</Link>
+          <StyledLink to={`/view-country/${border}`}>{border}</StyledLink>
         </BorderButton>
       );
     });

@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 const ButtonWrapper = styled.div`
   width: 80%;
-  a {
-    text-decoration: none;
-  }
 
   button {
     width: 100px;

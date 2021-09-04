@@ -27,11 +27,6 @@ const BorderButton = styled.li`
   margin: 5px 10px;
   box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7),
     -1px -1px 2px rgba(168, 168, 168, 0.7);
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
 `;
 
 export { BorderButton, BordersList, BordersWrapper };
