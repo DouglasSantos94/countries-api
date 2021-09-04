@@ -9,12 +9,12 @@ interface BorderProps {
 }
 
 const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
-  const [countryBorders, setCountryBorders] = useState<string[]>([]);
+  const [countryBorders, setCountryBorders] = useState<string[]>(borders);
+
   useEffect(() => {
-    if (resolved) {
+    if (resolved)
       getCountryBorders(borders).then((name) => setCountryBorders(name));
-    }
-  }, [countryBorders]);
+  }, [borders]);
 
   const renderBorders = (): JSX.Element[] => {
     return countryBorders.map((border) => {
@@ -28,7 +28,7 @@ const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
   return (
     <BordersWrapper>
       <p>Border Countries:</p>
-      <BordersList>{countryBorders ? renderBorders() : "Loading"}</BordersList>
+      <BordersList>{renderBorders()}</BordersList>
     </BordersWrapper>
   );
 };
