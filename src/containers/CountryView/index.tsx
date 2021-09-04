@@ -1,14 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { InfoField, StyledLink } from "styles/elements";
 import BorderCountries from "components/BorderCountries";
 import { getCountry } from "api/countryApi";
+import Skeleton from "react-loading-skeleton";
 import {
   ButtonWrapper,
   Container,
   ContentWrapper,
   CountryDetails,
+  CountryFlag,
+  CountryName,
   InfoWrapper,
 } from "./styles";
 
@@ -16,11 +18,11 @@ interface CountryProps {
   alpha3code: string;
   borders: string[];
   capital: string;
-  currencies: Array<string>;
+  currencies: [{ name: string }];
   flag: string;
   nativeName: string;
   name: string;
-  languages: string[];
+  languages: [{ name: string }];
   population: number;
   region: string;
   subregion: string;
@@ -36,11 +38,11 @@ const CountryView: React.FC<CountryProps> = () => {
     alpha3code: "",
     borders: [],
     capital: "",
-    currencies: [],
+    currencies: [{ name: "" }],
     flag: "",
     nativeName: "",
     name: "",
-    languages: [],
+    languages: [{ name: "" }],
     population: 0,
     region: "",
     subregion: "",
@@ -71,46 +73,46 @@ const CountryView: React.FC<CountryProps> = () => {
         </StyledLink>
       </ButtonWrapper>
       <ContentWrapper>
-        <img src={country.flag} alt={`${country.name} flag`} />
-        <CountryDetails>
-          <h1>{country.name}</h1>
-          <InfoWrapper>
-            <InfoField>
-              <span>Native Name:</span> {country.nativeName}
-            </InfoField>
-            <InfoField>
-              <span>Population:</span> {country.population}
-            </InfoField>
-            <InfoField>
-              <span>Region:</span> {country.region}
-            </InfoField>
-            <InfoField>
-              <span>Sub Region:</span> {country.subregion}
-            </InfoField>
-            <InfoField>
-              <span>Capital:</span> {country.capital}
-            </InfoField>
-            <InfoField>
-              <span>Top Level Domain:</span> teste
-              {/* {topLevelDomain[0]} */}
-            </InfoField>
-            <InfoField>
-              <span>Currencies:</span> teste
-              {/* {topLevelDomain[0]} */}
-            </InfoField>
-            <InfoField>
-              <span>Languages:</span> teste
-              {/* {topLevelDomain[0]} */}
-            </InfoField>
-            <InfoField>
-              {/* <span>Currencies:</span> {currencies[0]} */}
-            </InfoField>
-            <InfoField>
-              {/* <span>Languages:</span> {languages[0]} */}
-            </InfoField>
-          </InfoWrapper>
-          {resolved && <BorderCountries borders={country.borders} resolved />}
-        </CountryDetails>
+        {resolved ? (
+          <CountryFlag src={country.flag} alt={`${country.name} flag`} />
+        ) : (
+          <Skeleton width="400px" height="300px" />
+        )}
+        {resolved ? (
+          <CountryDetails>
+            <CountryName>{country.name}</CountryName>
+            <InfoWrapper>
+              <InfoField>
+                <span>Native Name:</span> {country.nativeName}
+              </InfoField>
+              <InfoField>
+                <span>Population:</span> {country.population}
+              </InfoField>
+              <InfoField>
+                <span>Region:</span> {country.region}
+              </InfoField>
+              <InfoField>
+                <span>Sub Region:</span> {country.subregion}
+              </InfoField>
+              <InfoField>
+                <span>Capital:</span> {country.capital}
+              </InfoField>
+              <InfoField>
+                <span>Top Level Domain:</span> {country.topLevelDomain}
+              </InfoField>
+              <InfoField>
+                <span>Currencies:</span> {country.currencies[0].name}
+              </InfoField>
+              <InfoField>
+                <span>Languages:</span>{" "}
+                {country.languages.map((l) => l.name).join(", ")}
+              </InfoField>
+            </InfoWrapper>
+            {resolved && <BorderCountries borders={country.borders} resolved />}
+          </CountryDetails>
+        ) : (
+          <Skeleton width="560px" height="300px" />
+        )}
       </ContentWrapper>
     </Container>
   );

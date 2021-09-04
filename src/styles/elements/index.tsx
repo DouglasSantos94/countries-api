@@ -17,6 +17,7 @@ const StyledLink = styled(Link)`
 const InfoField = styled.p`
   font-size: 14px;
   margin: 4px 0;
+  max-width: 150px;
 
   span {
     font-weight: 600;
