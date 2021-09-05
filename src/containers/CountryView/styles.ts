@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
+const Container = styled.div`
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  width: 100vw;
+  flex-direction: column;
+  height: 600px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  span {
+    font-weight: 600;
+  }
+`;
+
 const ButtonWrapper = styled.div`
   width: 80%;
 
@@ -20,21 +36,12 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const InfoWrapper = styled.div`
-  height: 150px;
-  padding: 15px 0;
-  width: 540px;
-  box-sizing: border-box;
+const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: space-between;
   flex-wrap: wrap;
-
-  p {
-    margin-bottom: 7px;
-    box-sizing: border-box;
-  }
+  justify-content: space-between;
+  height: 300px;
+  width: 80%;
 `;
 
 const CountryDetails = styled.div`
@@ -63,32 +70,25 @@ const CountryName = styled.h1`
   margin-bottom: 20px;
 `;
 
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: 300px;
-  width: 80%;
-`;
-
 const CountryFlag = styled.img`
   width: 400px;
   height: 300px;
 `;
 
-const Container = styled.div`
-  font-family: "Nunito Sans", sans-serif;
-  font-size: 14px;
-  width: 100vw;
-  flex-direction: column;
-  height: 600px;
+const InfoWrapper = styled.div`
+  height: 150px;
+  padding: 15px 0;
+  width: 540px;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-between;
+  flex-wrap: wrap;
 
-  span {
-    font-weight: 600;
+  p {
+    margin-bottom: 7px;
+    box-sizing: border-box;
   }
 `;
 
