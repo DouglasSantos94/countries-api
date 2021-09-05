@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios, { AxiosResponse } from "axios";
 
 const getCountries = (): Promise<AxiosResponse> =>
