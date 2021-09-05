@@ -2,7 +2,7 @@ import React from "react";
 import { InfoField, StyledLink } from "styles/elements";
 import { Container, InfoWrapper } from "./styles";
 
-interface IProps {
+export interface IProps {
   alpha3code: string;
   capital: string;
   name: string;
