@@ -12,11 +12,19 @@ const Container = styled.li`
   box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7),
     -1px -1px 2px rgba(168, 168, 168, 0.7);
 
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 450px;
+  }
+
   img {
     width: 100%;
     box-sizing: border-box;
     height: 140px;
     border-radius: 6px 6px 0 0;
+    @media screen and (max-width: 600px) {
+      height: 300px;
+    }
   }
 `;
 
