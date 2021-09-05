@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { InfoField, StyledLink } from "styles/elements";
+import { InfoField } from "styles/elements";
 import BorderCountries from "components/BorderCountries";
 import { getCountry } from "api/countryApi";
 import Skeleton from "react-loading-skeleton";
+import BackButton from "components/BackButton";
 import {
   ButtonWrapper,
   Container,
@@ -66,12 +67,7 @@ const CountryView: React.FC<CountryProps> = () => {
   return (
     <Container>
       <ButtonWrapper>
-        <StyledLink to="/">
-          <button type="button">
-            <i className="fas fa-arrow-left" />
-            Back
-          </button>
-        </StyledLink>
+        <BackButton />
       </ButtonWrapper>
       <ContentWrapper>
         {resolved ? (
