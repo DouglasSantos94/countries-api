@@ -14,6 +14,19 @@ const CountryItemProps = {
   capital: "Country Capital",
 };
 describe("CountryItem component test suit", () => {
+  it("should render country flag", () => {
+    render(
+      <BrowserRouter>
+        <CountryItem {...CountryItemProps} />
+      </BrowserRouter>
+    );
+
+    const imageElement = screen.getByRole("img");
+    expect(imageElement).toBeInTheDocument();
+    expect(imageElement).toHaveAttribute("src", "www");
+    expect(imageElement).toHaveAttribute("alt", "Country flag");
+  });
+
   it("should render country name", () => {
     render(
       <BrowserRouter>
