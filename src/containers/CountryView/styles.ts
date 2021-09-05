@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Skeleton from "react-loading-skeleton";
 
 const Container = styled.div`
   font-family: "Nunito Sans", sans-serif;
@@ -10,6 +11,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    padding: 0 15px;
+  }
 
   span {
     font-weight: 600;
@@ -42,20 +47,19 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   height: 300px;
   width: 80%;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const CountryDetails = styled.div`
   width: 560px;
 
-  h1 {
-    box-sizing: border-box;
-    font-size: 25px;
-    font-weight: 800;
-    width: 500px;
-    display: flex;
-    align-items: flex-end;
-    height: 60px;
-    margin-bottom: 20px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -68,11 +72,25 @@ const CountryName = styled.h1`
   align-items: flex-end;
   height: 60px;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const CountryFlag = styled.img`
   width: 400px;
   height: 300px;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    height: 400px;
+  }
+
+  @media screen and (max-width: 500px) {
+    height: 300px;
+    width: 100%;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -90,6 +108,24 @@ const InfoWrapper = styled.div`
     margin-bottom: 7px;
     box-sizing: border-box;
   }
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    height: 200px;
+  }
+
+  @media screen and (max-width: 450px) {
+    height: 300px;
+  }
+`;
+
+const ResponsiveSkeleton = styled(Skeleton)`
+  width: 560px;
+  height: 300px;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export {
@@ -100,4 +136,5 @@ export {
   InfoWrapper,
   CountryName,
   CountryFlag,
+  ResponsiveSkeleton,
 };

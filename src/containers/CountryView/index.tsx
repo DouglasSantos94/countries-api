@@ -12,6 +12,7 @@ import {
   CountryFlag,
   CountryName,
   InfoWrapper,
+  ResponsiveSkeleton,
 } from "./styles";
 
 interface CountryProps {
@@ -111,7 +112,7 @@ const CountryView: React.FC<CountryProps> = () => {
             {resolved && <BorderCountries borders={country.borders} resolved />}
           </CountryDetails>
         ) : (
-          <Skeleton width="560px" height="300px" />
+          <ResponsiveSkeleton />
         )}
       </ContentWrapper>
     </Container>

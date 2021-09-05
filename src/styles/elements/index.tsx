@@ -19,6 +19,10 @@ const InfoField = styled.p`
   margin: 4px 0;
   max-width: 150px;
 
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
+  }
+
   span {
     font-weight: 600;
   }
