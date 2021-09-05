@@ -5,6 +5,10 @@ const BordersList = styled.ul`
   width: 75%;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const BordersWrapper = styled.div`
@@ -16,8 +20,18 @@ const BordersWrapper = styled.div`
   height: 110px;
   width: 100%;
 
+  @media screen and (max-width: 700px) {
+    flex-wrap: wrap;
+  }
+
   p {
     width: 25%;
+    font-weight: 600;
+
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
 
