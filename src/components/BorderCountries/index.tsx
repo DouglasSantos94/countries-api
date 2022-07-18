@@ -28,7 +28,7 @@ const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
   return (
     <BordersWrapper>
       <p>Border Countries:</p>
-      <BordersList>{renderBorders()}</BordersList>
+      <BordersList>{countryBorders && renderBorders()}</BordersList>
     </BordersWrapper>
   );
 };
