@@ -30,6 +30,11 @@ const CountryList: React.FC<IProps> = () => {
 
   useEffect(() => {
     getCountries().then(({ data }) => {
+      data.sort(function (a: any, b: any) {
+        if (a.capital > b.capital) return 1;
+        if (a.capital < b.capital) return -1;
+        return 0;
+      });
       setCountries(data);
       setResolved(true);
     });
