@@ -3,10 +3,10 @@ import { getCountryBorders } from "api/countryApi";
 import { StyledLink } from "styles/elements";
 import { BorderButton, BordersList, BordersWrapper } from "./styles";
 
-interface BorderProps {
+type BorderProps = {
   borders: string[];
   resolved: boolean;
-}
+};
 
 const BorderCountries: React.FC<BorderProps> = ({ borders, resolved }) => {
   const [countryBorders, setCountryBorders] = useState<string[]>(borders);

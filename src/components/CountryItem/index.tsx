@@ -2,16 +2,16 @@ import React from "react";
 import { InfoField, StyledLink } from "styles/elements";
 import { Container, InfoWrapper } from "./styles";
 
-export interface IProps {
+export type CountryItemProps = {
   alpha3code: string;
   capital: string;
   name: string;
   flag: string;
   population: number;
   region: string;
-}
+};
 
-const CountryItem: React.FC<IProps> = ({
+const CountryItem: React.FC<CountryItemProps> = ({
   alpha3code,
   flag,
   name,
