@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import CountryItem from "components/CountryItem";
+import CountryItem, { CountryItemProps } from "components/CountryItem";
 import { getCountries, getCountriesByRegion, getCountry } from "api/countryApi";
 import {
   Container,
@@ -11,26 +11,19 @@ import {
   RegionListItem,
 } from "./styles";
 
-interface IProps {
-  countries: {
-    alpha3code: string;
-    capital: string;
-    flag: string;
-    name: string;
-    population: number;
-    region: string;
-  }[];
-}
+type CountryListProps = {
+  countries: CountryItemProps[];
+};
 
-const CountryList: React.FC<IProps> = () => {
-  const [countries, setCountries] = useState<IProps["countries"]>([]);
+const CountryList: React.FC<CountryListProps> = () => {
+  const [countries, setCountries] = useState<CountryItemProps[]>([]);
   const [regionFilter, setRegionFilter] = useState("");
   const [resolved, setResolved] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     getCountries().then(({ data }) => {
-      data.sort(function (a: any, b: any) {
+      data.sort((a: CountryItemProps, b: CountryItemProps) => {
         if (a.capital > b.capital) return 1;
         if (a.capital < b.capital) return -1;
         return 0;
